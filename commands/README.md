@@ -78,11 +78,36 @@ Display an array type as GET only works on string can use -1 for last element li
 
 `HDEL parentKey Key`
 
-### check if a key has a key
+### Check if a key has a key
 
 `HEXISTS parentKey key`
 
-## PostG res
+### Subscribe a channel
+
+`subscribe <channelName>`
+
+### Publish a message to a channel
+
+`publish <channelName> <message>`
+
+### Subscribe to all publishers matching a pattern
+
+`psubscribe <pattern>`
+
+ex:- `psubscribe d*` subscribes all the publishers beginning with the letter d
+
+### Unsubscribe a channel
+
+`unsubscribe <channelName>`
+
+### Unsubscribe to all publishers matching a pattern
+
+`punsubscribe <pattern>`
+
+ex:- `punsubscribe d*` usubscribes all the publishers beginning with the letter d
+
+
+## POSTGRES
 
 Note- ( All commands are usually written in uppercase in postgres but with newer version you can type in lower case too )
 
@@ -221,7 +246,6 @@ queries:
 In case id is not provided if we set the constraint to generated always as identity it will auto generate
 ex-
 `create table hello (customer_id int generated always as identity)`
-
 
 ### Type casting
 
