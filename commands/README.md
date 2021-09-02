@@ -106,6 +106,40 @@ ex:- `psubscribe d*` subscribes all the publishers beginning with the letter d
 
 ex:- `punsubscribe d*` usubscribes all the publishers beginning with the letter d
 
+### Add in a stream
+
+`xadd <streamName> <ID> <key> <value>`
+
+additional params:
+- use `*` in place of id to generate automatic timestamp id
+
+- Use `MAXLEN` after stream name to specify the max size till it stores in stream and if more than max length automatically move or delete the old entries
+
+  `xadd <streamName> MAXLEN <ID> <KEY <VALUE>`
+
+### Read all the messages in the stream upto a count and starting from a particular id
+
+`xread COUNT 200 streams <streamName> <starting id>`
+
+Disconnect user after a period of inactivity
+
+`xread block <timeInMillisec> streams <streamName> <startingId>`
+
+### Streams like pub/sub
+
+`xread block 10000 streams <streamName> $`
+
+### Access a stream with a starting id and ending id
+
+`xrange <streamName> <startingId> <endingId> <optionalCount>`
+
+### Access a stream with indexes like count
+
+`xrange <streamName> - + count <number>`
+
+### Access a stream with indexes like count but reverse
+
+`xrevrange <streamName> + - count <number>`
 
 ## POSTGRES
 
