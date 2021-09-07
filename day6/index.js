@@ -11,14 +11,18 @@ readline.question(
     switch (parseInt(valueFromInput)) {
       case 1:
         readline.question("Enter Name of the folder\n", (folderName) => {
-          fs.mkdirSync(`${folderName}`);
+          fs.mkdir(`${folderName}`, (err) => {
+            if (err) throw err;
+          });
           console.log("done");
           readline.close();
         });
         break;
       case 2:
         readline.question("Enter Name of the folder\n", (folderName) => {
-          fs.rmdirSync(`${folderName}`);
+          fs.rmdir(`${folderName}`, (err) => {
+            if (err) throw err;
+          });
           console.log("done");
           readline.close();
         });
@@ -28,7 +32,9 @@ readline.question(
           "Enter Name of the folder to rename\n",
           (folderName) => {
             readline.question("Enter new Name of the folder\n", (newName) => {
-              fs.renameSync(`${folderName}`, `${newName}`);
+              fs.rename(`${folderName}`, `${newName}`, (err) => {
+                if (err) throw err;
+              });
               console.log("done");
               readline.close();
             });
