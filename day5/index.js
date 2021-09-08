@@ -6,7 +6,7 @@ const fs = require("fs");
 console.log("Type no. of operation to do\n");
 
 readline.question(
-  "1.Make a folder\n2.delete a folder\n3.rename a folder\n",
+  "1.Make a folder\n2.delete a folder\n3.rename a folder\n4.read a file\n",
   (valueFromInput) => {
     switch (parseInt(valueFromInput)) {
       case 1:
@@ -34,6 +34,15 @@ readline.question(
             });
           }
         );
+        break;
+      case 4:
+        readline.question("Enter Name of the file to read\n", (fileName) => {
+          const data = fs.readFileSync(`${fileName}`, "utf-8");
+          if (!data) console.log("error");
+          console.log(data);
+          readline.close();
+        });
+
         break;
       default:
         console.error("Wrong input entered");
