@@ -1,6 +1,5 @@
-// const User = require("../models/user");
+const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const User = require("../models/mongo");
 const saltRounds = 10;
 const register = async (req, res) => {
   const { email, password, fullName } = req.body;

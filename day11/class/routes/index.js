@@ -4,13 +4,9 @@ var registerInitialCheck = require("../middlewares/registerCheck");
 var register = require("../controllers/register");
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  const session = req.session;
-  session.username = "aryan";
   res.render("index", { title: "Express" });
 });
-router.get("/hello", function (req, res, next) {
-  console.log("hello", req.session.username);
-});
+
 /**
  * @requires {email, firstName,lastName,password,confirmPassword} - req.body
  * @description
