@@ -7,8 +7,11 @@ var jwt = require("jsonwebtoken");
 const { SECRET } = require("../config");
 exports.userAuth = passport.authenticate("jwt", { session: false });
 
-exports.checkRole = (roles) => (req, res, next) =>
-  roles === req.user.role ? next() : res.status(401).json("Unauthorized");
+exports.checkRole = (roles) => (req, res, next) => {
+  roles === req.user.rolePassport
+    ? next()
+    : res.status(401).json("Unauthorized");
+};
 
 exports.validateEmail = async (email) => {
   let user = await User.findOne({
@@ -18,7 +21,7 @@ exports.validateEmail = async (email) => {
   });
   return user ? true : false;
 };
-exports.userRegister = async (userData, rolePassport = "user", res) => {
+exports.userRegister = async (userData, rolePassport, res) => {
   console.log(userData);
   try {
     let emailNotRegistered = await this.validateEmail(userData.email);
@@ -68,7 +71,7 @@ exports.userLogin = async (userData, rolePassport, res) => {
   if (isMatch) {
     let token = jwt.sign(
       {
-        user_id: user.user_id,
+        user_id: user.id,
         role: user.role,
         username: user.username,
         email: user.email,
