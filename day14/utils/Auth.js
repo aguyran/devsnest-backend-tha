@@ -68,7 +68,7 @@ exports.userLogin = async (userData, rolePassport, res) => {
   if (isMatch) {
     let token = jwt.sign(
       {
-        user_id: user.id,
+        user_id: user.user_id,
         role: user.role,
         username: user.username,
         email: user.email,
