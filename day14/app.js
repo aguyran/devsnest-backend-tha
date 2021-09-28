@@ -3,9 +3,10 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var passport = require('passport')
+var passport = require("passport");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var passportRouter = require("./routes/passport");
 const { redisClient, RedisStore, session } = require("./database/redis");
 // require("./database/mongo");
 var app = express();
@@ -33,9 +34,10 @@ app.use(
   })
 );
 app.use(passport.initialize());
-require("./middlewares/passport")(passport)
+require("./middlewares/passport")(passport);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/passport", passportRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

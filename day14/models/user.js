@@ -18,5 +18,9 @@ const User = sequelize.define("User", {
 
     defaultValue: "user",
   },
+  rolePassport: {
+    type: DataTypes.STRING,
+    defaultValue: "user",
+  },
 });
 module.exports = User;
